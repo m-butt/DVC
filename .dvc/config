@@ -1,0 +1,6 @@
+[core]
+    remote = storage
+['remote "uci"']
+    url = s3://dvc-public/data/uci
+['remote "storage"']
+    url = gdrive://1jXjfwBNxlp268CzxL8Un8S6T0hxuVC7t
