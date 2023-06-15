@@ -1,13 +1,20 @@
 name: DVC Tracking with Github Actions
 on: [push]
 jobs:
-  run:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Running_updates
-        run: |
-          make install
-          dvc repro
-          git fetch --prune
-          dvc metrics diff --show-md main > report.md
+    run:
+        permissions: write-all
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - name: Running_updates
+              env:
+                  GH_TOKEN: ${{ github.token }}
+                  GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
+              run: |
+                  make install 
+                  dvc remote modify drive gdrive_use_service_account true
+                  dvc pull data_processed.csv
+                  dvc repro
+                  git fetch --prune
+                  dvc metrics diff --show-md main > report.md
+                  gh pr comment ${{github.event.pull_request.number}} -F report.md
