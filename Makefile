@@ -1,0 +1,9 @@
+wget
+scikit-learn
+pandas
+seaborn
+matplotlib
+dvc
+dvc-gdrive
+json 
+os
