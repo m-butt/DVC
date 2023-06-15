@@ -1,4 +1,4 @@
 schema: '2.0'
 stages:
   train:
-    cmd: python .\src\train.py
+    cmd: python src/train.py

@@ -2,7 +2,8 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
-
+import json
+import os
 # Load data from CSV file
 data = pd.read_csv('data/covtype.csv', header=None)
 
@@ -22,4 +23,11 @@ y_pred = clf.predict(X_test)
 
 # Calculate accuracy of the model on the test data
 accuracy = accuracy_score(y_test, y_pred)
+
+
 print(f'Accuracy: {accuracy:.4f}')
+
+
+# Now print to file
+with open("metrics.json", 'w') as outfile:
+        json.dump({ "accuracy": accuracy}, outfile)
