@@ -1,9 +1,3 @@
-wget
-scikit-learn
-pandas
-seaborn
-matplotlib
-dvc
-dvc-gdrive
-json 
-os
+install:
+	pip install	--upgrade pip && \
+	pip install -r requirements.txt
